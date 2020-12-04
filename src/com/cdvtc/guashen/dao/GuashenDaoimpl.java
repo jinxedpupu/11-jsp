@@ -28,6 +28,7 @@ public class GuashenDaoimpl implements GuashenDao{
                 //获取行数据封装成管理员对象
                 User user = new User();
                 user.setUserzh(userzh);
+                System.out.println(user.getUserzh());
                 user.setUsermm(usermm);
                 user.setUserid(rs.getInt("userid"));
                 user.setUsermc(rs.getString("usermc"));
@@ -40,15 +41,31 @@ public class GuashenDaoimpl implements GuashenDao{
                 return user;
             }
 
-            // 关闭连接，释放资源
-            rs.close();
-            pst.close();
-            con.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return null;//未找到对象
+    }
+
+    @Override
+    public void addUser(User user) {
+        try {
+            // 获取连接
+            Connection con = db.getConnection();
+
+            // 执行SQL语句
+            PreparedStatement pst = con.prepareStatement("insert into user(usermc,userzh,usermm,userdh,userqq) values(?,?,?,?,?)");
+            pst.setString(1, user.getUsermc());
+            pst.setString(2, user.getUserzh());
+            pst.setString(3, user.getUsermm());
+            pst.setString(4, user.getUserdh());
+            pst.setString(5, user.getUserqq());
+
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

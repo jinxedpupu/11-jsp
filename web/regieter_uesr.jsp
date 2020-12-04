@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 刘云龙
-  Date: 2020/11/30
-  Time: 9:58
+  Date: 2020/12/4
+  Time: 9:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,14 +10,14 @@
 <html>
 <head>
 
-    <title>用户登录-挂神</title>
+    <title>用户注册-挂神</title>
     <style type="text/css">
         .big-bg{
             width: 100%;
         }
         .zt{
             width: 400px;
-            height: 400px;
+            height: 480px;
             border: 1px solid black;
             margin: 200px auto 0;
             background-color: #fff;
@@ -63,28 +63,37 @@
         a.dsf-wx{
             margin-left: 65px;
         }
-        .error{
-            color: red;
-        }
     </style>
 </head>
 <body>
 <div class="big-bg">
     <div class="zt">
-        <h2 style="text-align: center;">登录</h2>
+        <h2 style="text-align: center;">注册</h2>
         <img class="login" src="public/img/login1.png" style="display: block;">
-        <form class="input" action="loginServlet" method=post>
-            <input class="username" name="userzh" size="30" placeholder="请输入用户账号">
-            <input class="password" name="usermm" size="30" placeholder="请输入用户密码" type="password">
-            <input type=submit value=登陆 class="btn"> <input type=reset value=重置>
-            <% if(request.getAttribute("error") != null){ %>
-            <p class="error"><%=request.getAttribute("error")%></p>
-            <% } %>
+        <form class="input" action="RegisterServlet" method=post>
+            <input class="username" type="text" name="usermc" placeholder="请输入用户名" size="30">
+            <% if(request.getAttribute("error_usermc") != null) {%>
+            <span class="error"> <%=request.getAttribute("error_usermc")%> </span>
+            <%}%>
+
+            <input class="password" type="text" name="userzh" placeholder="请输入用户账号" size="30">
+            <% if(request.getAttribute("error_userzh") != null) {%>
+            <span class="error"> <%=request.getAttribute("error_userzh")%> </span>
+            <%}%>
+
+            <input class="password" type="password" name="usermm" placeholder="请输入用户密码" size="30">
+
+            <input class="password" type="text" name="userdh" placeholder="请输入用户电话" size="30">
+            <% if(request.getAttribute("error_userdh") != null) {%>
+            <span class="error"> <%=request.getAttribute("error_userdh")%> </span>
+            <%}%>
+
+            <input class="password" type="text" name="userqq" placeholder="请输入用户QQ" size="30">
+
+            <input type=submit value=注册 class="btn"> <input type=reset value=重置>
         </form>
 
-        <p class="tishi"><span>没有账号？<a class="tishi-qt" href="regieter_uesr.jsp" >注册</a>-</span>
-            <a class="tishi-qt" href="#">忘记密码</a><span>&nbsp;&nbsp;
-                <a class="tishi-qt" href="index.jsp">返回首页</a></span></p>
+        <p class="tishi"><span>已有账号？<a class="tishi-qt" href="login_user.jsp" >登录</a></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="tishi-qt" href="#">返回首页</a></span></p>
 
         <div class="dsf">
             <p>————<span>第三方账号登录</span>————</p>
@@ -93,7 +102,6 @@
                 <a class="dsf-wx" href="#"><img src="public/img/wx.png" alt="微信登录" title="微信登录"></a>
             </div>
         </div>
-
     </div>
 </div>
 </body>

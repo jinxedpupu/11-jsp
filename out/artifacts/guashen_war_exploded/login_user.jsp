@@ -63,6 +63,9 @@
         a.dsf-wx{
             margin-left: 65px;
         }
+        .error{
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -70,13 +73,18 @@
     <div class="zt">
         <h2 style="text-align: center;">登录</h2>
         <img class="login" src="public/img/login1.png" style="display: block;">
-        <form class="input" action="login_user_deal.jsp" method=post>
-            <input class="username" type="text" name="usermc" placeholder="请输入用户账号" lay-verify="required" size="30">
-            <input class="password" type="password" name="usermm" placeholder="请输入用户密码" lay-verify="required" size="30">
-            <button class="btn">登录</button>
+        <form class="input" action="loginServlet" method=post>
+            <input class="username" name="userzh" size="30" placeholder="请输入用户账号">
+            <input class="password" name="usermm" size="30" placeholder="请输入用户密码" type="password">
+            <input type=submit value=登陆 class="btn"> <input type=reset value=重置>
+            <% if(request.getAttribute("error") != null){ %>
+            <p class="error"><%=request.getAttribute("error")%></p>
+            <% } %>
         </form>
 
-        <p class="tishi"><span>没有账号？<a class="tishi-qt" href="#" >注册</a>-</span><a class="tishi-qt" href="#">忘记密码</a><span>&nbsp;&nbsp;<a class="tishi-qt" href="#">返回首页</a></span></p>
+        <p class="tishi"><span>没有账号？<a class="tishi-qt" href="regieter_uesr.jsp" >注册</a>-</span>
+            <a class="tishi-qt" href="#">忘记密码</a><span>&nbsp;&nbsp;
+                <a class="tishi-qt" href="index.jsp">返回首页</a></span></p>
 
         <div class="dsf">
             <p>————<span>第三方账号登录</span>————</p>
@@ -85,6 +93,7 @@
                 <a class="dsf-wx" href="#"><img src="public/img/wx.png" alt="微信登录" title="微信登录"></a>
             </div>
         </div>
+
     </div>
 </div>
 </body>

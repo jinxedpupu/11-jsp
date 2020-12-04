@@ -16,4 +16,19 @@ public class DBConnection {
 
         return con;
     }
+
+        public static void main(String[] args) throws SQLException {
+        DBConnection db = new DBConnection();
+        Connection con = db.getConnection();
+        //执行查询（测试）
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("select  *  from user");
+        while (rs.next()){
+            String name = rs.getString("usermc");
+            System.out.println("名字:"+name);
+        }
+        rs.close();
+        st.close();
+        con.close();
+    }
 }
